@@ -1,0 +1,9 @@
+{
+  "name": "professional-appreciation",
+  "version": "1.0.0",
+  "description": "Professional appreciation landing page with IT theme",
+  "scripts": {
+    "build": "echo 'Building static site'"
+  },
+  "static": true
+}

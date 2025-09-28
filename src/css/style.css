@@ -1,0 +1,485 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --neon-green: #0f0;
+    --neon-blue: #08f;
+    --neon-purple: #80f;
+    --dark-bg: #0a0a0a;
+    --terminal-bg: #1a1a1a;
+    --text-primary: #00ff00;
+    --text-secondary: #cccccc;
+    --accent: #ff0080;
+}
+
+body {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--dark-bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+    font-size: 14px; /* Base font size for mobile */
+}
+
+/* Matrix Background */
+#matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #0a0a0a 0%, #1a1a1a 100%);
+    z-index: -1;
+}
+
+/* Container - Mobile First */
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Header - Mobile Optimized */
+.header {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px 15px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--neon-green);
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-glitch {
+    font-size: 2rem; /* Smaller for mobile */
+    font-weight: 700;
+    color: var(--neon-green);
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    line-height: 1.2;
+}
+
+.cyber-glitch::before,
+.cyber-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.cyber-glitch::before {
+    left: 1px;
+    text-shadow: -1px 0 var(--neon-blue);
+    clip: rect(12px, 550px, 45px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.cyber-glitch::after {
+    left: -1px;
+    text-shadow: -1px 0 var(--neon-purple);
+    clip: rect(42px, 550px, 70px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    font-weight: 300;
+}
+
+/* Music Control - Mobile Friendly */
+.music-control {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+.cyber-button {
+    background: transparent;
+    border: 1px solid var(--neon-green);
+    color: var(--neon-green);
+    padding: 10px 15px;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8rem;
+    min-height: 44px; /* Minimum touch target size */
+}
+
+.cyber-button:hover {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 12px rgba(0, 255, 0, 0.5);
+    transform: translateY(-1px);
+}
+
+.cyber-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* Terminal Window - Mobile Optimized */
+.terminal-window {
+    background: var(--terminal-bg);
+    border: 1px solid var(--neon-green);
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+    overflow: hidden;
+}
+
+.terminal-header {
+    background: #2a2a2a;
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--neon-green);
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.terminal-btn {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.terminal-btn.close { background: #ff5f57; }
+.terminal-btn.minimize { background: #ffbd2e; }
+.terminal-btn.maximize { background: #28ca42; }
+
+.terminal-title {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.terminal-body {
+    padding: 20px 15px;
+    min-height: 400px;
+}
+
+/* Command Line */
+.command-line {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.prompt {
+    color: var(--neon-blue);
+    font-weight: bold;
+}
+
+.command {
+    color: var(--text-primary);
+}
+
+/* Message Content - Mobile Readable */
+.output {
+    margin: 20px 0;
+}
+
+.typing-effect {
+    margin-bottom: 15px;
+    opacity: 0;
+    animation: typeIn 1s ease forwards;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.typing-effect:nth-child(1) { animation-delay: 0.5s; }
+.typing-effect:nth-child(2) { animation-delay: 1.5s; }
+
+.section {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(0, 255, 0, 0.05);
+    border-left: 3px solid var(--neon-green);
+    border-radius: 5px;
+}
+
+.section-title {
+    color: var(--neon-blue);
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.code-comment {
+    color: #666;
+    font-style: italic;
+    margin: 8px 0;
+    padding-left: 15px;
+    font-size: 0.85rem;
+}
+
+/* Progress Bar */
+.progress-container {
+    margin: 12px 0;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 16px;
+    background: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--neon-green);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-green), var(--neon-blue));
+    transition: width 2s ease-in-out;
+}
+
+.progress-text {
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Closing Section */
+.closing-section {
+    margin: 30px 0;
+    padding: 20px;
+    background: rgba(0, 100, 255, 0.1);
+    border: 1px solid var(--neon-blue);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.highlight {
+    color: var(--neon-purple);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Footer - Mobile Friendly */
+.footer {
+    text-align: center;
+    padding: 30px 15px;
+    margin-top: 30px;
+    border-top: 1px solid #333;
+}
+
+.contact-section {
+    margin-bottom: 25px;
+}
+
+.contact-text {
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.whatsapp-btn {
+    background: linear-gradient(45deg, #25D366, #128C7E);
+    border-color: #25D366;
+    color: white;
+    min-height: 50px; /* Easy to tap on mobile */
+    padding: 12px 20px;
+    font-size: 0.9rem;
+}
+
+.signature {
+    color: #666;
+    font-size: 0.8rem;
+    margin-top: 15px;
+}
+
+/* Animations */
+@keyframes typeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(21px, 9999px, 22px, 0); }
+    5% { clip: rect(6px, 9999px, 29px, 0); }
+    10% { clip: rect(24px, 9999px, 14px, 0); }
+    15% { clip: rect(21px, 9999px, 36px, 0); }
+    20% { clip: rect(31px, 9999px, 13px, 0); }
+    25% { clip: rect(17px, 9999px, 27px, 0); }
+    30% { clip: rect(43px, 9999px, 36px, 0); }
+    35% { clip: rect(10px, 9999px, 10px, 0); }
+    40% { clip: rect(13px, 9999px, 30px, 0); }
+    45% { clip: rect(12px, 9999px, 33px, 0); }
+    50% { clip: rect(28px, 9999px, 49px, 0); }
+    55% { clip: rect(2px, 9999px, 23px, 0); }
+    60% { clip: rect(41px, 9999px, 15px, 0); }
+    65% { clip: rect(27px, 9999px, 13px, 0); }
+    70% { clip: rect(14px, 9999px, 49px, 0); }
+    75% { clip: rect(22px, 9999px, 34px, 0); }
+    80% { clip: rect(11px, 9999px, 42px, 0); }
+    85% { clip: rect(27px, 9999px, 42px, 0); }
+    90% { clip: rect(22px, 9999px, 23px, 0); }
+    95% { clip: rect(18px, 9999px, 10px, 0); }
+    100% { clip: rect(2px, 9999px, 45px, 0); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip: rect(32px, 9999px, 50px, 0); }
+    5% { clip: rect(26px, 9999px, 37px, 0); }
+    10% { clip: rect(39px, 9999px, 42px, 0); }
+    15% { clip: rect(37px, 9999px, 2px, 0); }
+    20% { clip: rect(33px, 9999px, 30px, 0); }
+    25% { clip: rect(7px, 9999px, 39px, 0); }
+    30% { clip: rect(0px, 9999px, 33px, 0); }
+    35% { clip: rect(43px, 9999px, 15px, 0); }
+    40% { clip: rect(11px, 9999px, 49px, 0); }
+    45% { clip: rect(42px, 9999px, 36px, 0); }
+    50% { clip: rect(35px, 9999px, 37px, 0); }
+    55% { clip: rect(1px, 9999px, 24px, 0); }
+    60% { clip: rect(15px, 9999px, 8px, 0); }
+    65% { clip: rect(29px, 9999px, 25px, 0); }
+    70% { clip: rect(20px, 9999px, 31px, 0); }
+    75% { clip: rect(1px, 9999px, 41px, 0); }
+    80% { clip: rect(23px, 9999px, 36px, 0); }
+    85% { clip: rect(1px, 9999px, 13px, 0); }
+    90% { clip: rect(13px, 9999px, 27px, 0); }
+    95% { clip: rect(21px, 9999px, 48px, 0); }
+    100% { clip: rect(19px, 9999px, 24px, 0); }
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    
+    .container {
+        padding: 20px;
+        max-width: 1200px;
+    }
+    
+    .header {
+        margin: 30px 0;
+        padding: 25px;
+    }
+    
+    .cyber-glitch {
+        font-size: 3rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .terminal-body {
+        padding: 25px;
+    }
+    
+    .typing-effect {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.1rem;
+    }
+    
+    .cyber-button {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+    }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+    .cyber-glitch {
+        font-size: 3.5rem;
+    }
+    
+    .terminal-body {
+        padding: 30px;
+    }
+    
+    .music-control {
+        top: 20px;
+        right: 20px;
+    }
+}
+
+/* Very Small Mobile Devices */
+@media (max-width: 360px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .cyber-glitch {
+        font-size: 1.6rem;
+    }
+    
+    .terminal-body {
+        padding: 15px 10px;
+    }
+    
+    .section {
+        padding: 12px;
+    }
+    
+    .cyber-button {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Orientation Adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+    .header {
+        margin: 10px 0;
+        padding: 15px;
+    }
+    
+    .terminal-body {
+        padding: 15px;
+        min-height: 300px;
+    }
+    
+    .footer {
+        padding: 20px 15px;
+    }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .cyber-glitch::before,
+    .cyber-glitch::after {
+        animation-duration: 3s;
+    }
+}
